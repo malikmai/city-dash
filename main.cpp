@@ -1,13 +1,15 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+// Constants for window dimensions and gravity
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 const float GRAVITY = 0.5f;
-const float JUMP_STRENGTH = -10.0f; // Strength of the jump
 
+// Ship class definition
 class Ship {
 public:
+    // Constructor
     Ship(float x, float y) : position(x, y), velocity(0) {
         shape.setPointCount(3); // Triangle shape for spaceship
         shape.setPoint(0, sf::Vector2f(0, 0));
@@ -17,30 +19,29 @@ public:
         shape.setPosition(position);
     }
 
+    // Update the ship's position based on gravity
     void update() {
         velocity += GRAVITY;
         position.y += velocity;
         shape.setPosition(position);
     }
 
-    void jump() {
-        velocity = JUMP_STRENGTH; // Apply jump strength
-    }
-
+    // Get the shape to draw
     sf::ConvexShape getShape() const {
         return shape;
     }
 
 private:
-    sf::Vector2f position;
-    float velocity;
-    sf::ConvexShape shape;
+    sf::Vector2f position; // Position of the ship
+    float velocity;        // Velocity of the ship
+    sf::ConvexShape shape; // Shape representing the ship
 };
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "City Dash");
     window.setFramerateLimit(60);
 
+    // Create a ship instance
     Ship ship(100, WINDOW_HEIGHT / 2);
 
     while (window.isOpen()) {
@@ -49,11 +50,9 @@ int main() {
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
-                ship.jump(); // Make the ship jump when space is pressed
-            }
         }
 
+        // Update the ship
         ship.update();
 
         window.clear();
