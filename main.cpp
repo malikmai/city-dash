@@ -1,22 +1,28 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
-int main()
-{
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+// Constants for window dimensions
+const int WINDOW_WIDTH = 800;
+const int WINDOW_HEIGHT = 600;
 
-    while (window.isOpen())
-    {
+int main() {
+    // Create the main window
+    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "City Dash");
+    window.setFramerateLimit(60);
+
+    while (window.isOpen()) {
         sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
+        while (window.pollEvent(event)) {
+            // Close window: exit
+            if (event.type == sf::Event::Closed) {
                 window.close();
+            }
         }
 
+        // Clear the screen
         window.clear();
-        window.draw(shape);
+
+        // Update the window
         window.display();
     }
 
