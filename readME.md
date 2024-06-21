@@ -10,5 +10,5 @@ City Dash is a simple game inspired by the classic Flappy Bird, created using C+
 4. Game over and restart functionality: Displays a game over message and allows the player to restart the game.
 
 ## Controls
-Space Bar: Make the ship jump.
-Escape: Exit the game.
+1. Space Bar: Make the ship jump.
+2. Escape: Exit the game.
